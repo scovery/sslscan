@@ -49,7 +49,7 @@ endif
 # Enable checks for buffer overflows, add stack protectors, generate position
 # independent code, mark the relocation table read-only, and mark the global
 # offset table read-only.
-CFLAGS  += -D_FORTIFY_SOURCE=2 -fstack-protector-all -fPIE
+CFLAGS  += -D_FORTIFY_SOURCE=2 -fstack-protector-all 
 
 # Don't enable some hardening flags on OS X because it uses an old version of Clang
 ifneq ($(OS), Darwin)
@@ -115,7 +115,7 @@ all: sslscan
 	@echo
 
 sslscan: $(SRCS)
-	$(CC) -o $@ ${WARNINGS} ${LDFLAGS} ${CFLAGS} ${CPPFLAGS} ${DEFINES} ${SRCS} ${LIBS}
+	$(CC) ${WARNINGS} ${LDFLAGS} ${CFLAGS} ${CPPFLAGS} ${DEFINES} -shared -o lib$@.so -fPIC ${SRCS} ${LIBS}
 
 install:
 	@if [ ! -f sslscan ] ; then \
