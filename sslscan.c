@@ -184,49 +184,49 @@ SSL *new_SSL(SSL_CTX *ctx) {
 }
 
 struct sslCheckOptions *init_sslCheckOptions() {
-    struct sslCheckOptions sslOptions;
+    struct sslCheckOptions *sslOptions = malloc(sizeof(struct sslCheckOptions));
 
-    memset(&sslOptions, 0, sizeof(struct sslCheckOptions));
-    sslOptions.port = 0;
-    strncpy(sslOptions.host, "127.0.0.1", 10);
-    sslOptions.showCertificate = false;
-    sslOptions.showTrustedCAs = false;
-    sslOptions.checkCertificate = true;
-    sslOptions.showClientCiphers = false;
-    sslOptions.showCipherIds = false;
-    sslOptions.showTimes = false;
-    sslOptions.ciphersuites = true;
-    sslOptions.reneg = true;
-    sslOptions.fallback = true;
-    sslOptions.compression = true;
-    sslOptions.heartbleed = true;
-    sslOptions.groups = true;
-    sslOptions.signature_algorithms = false;
-    sslOptions.starttls_ftp = false;
-    sslOptions.starttls_imap = false;
-    sslOptions.starttls_irc = false;
-    sslOptions.starttls_ldap = false;
-    sslOptions.starttls_pop3 = false;
-    sslOptions.starttls_smtp = false;
-    sslOptions.starttls_mysql = false;
-    sslOptions.starttls_xmpp = false;
-    sslOptions.starttls_psql = false;
-    sslOptions.xmpp_server = false;
-    sslOptions.verbose = false;
-    sslOptions.cipher_details = true;
-    sslOptions.ipv4 = true;
-    sslOptions.ipv6 = true;
-    sslOptions.ocspStatus = false;
+    memset(sslOptions, 0, sizeof(struct sslCheckOptions));
+    sslOptions->port = 0;
+    strncpy(sslOptions->host, "127.0.0.1", 10);
+    sslOptions->showCertificate = false;
+    sslOptions->showTrustedCAs = false;
+    sslOptions->checkCertificate = true;
+    sslOptions->showClientCiphers = false;
+    sslOptions->showCipherIds = false;
+    sslOptions->showTimes = false;
+    sslOptions->ciphersuites = true;
+    sslOptions->reneg = true;
+    sslOptions->fallback = true;
+    sslOptions->compression = true;
+    sslOptions->heartbleed = true;
+    sslOptions->groups = true;
+    sslOptions->signature_algorithms = false;
+    sslOptions->starttls_ftp = false;
+    sslOptions->starttls_imap = false;
+    sslOptions->starttls_irc = false;
+    sslOptions->starttls_ldap = false;
+    sslOptions->starttls_pop3 = false;
+    sslOptions->starttls_smtp = false;
+    sslOptions->starttls_mysql = false;
+    sslOptions->starttls_xmpp = false;
+    sslOptions->starttls_psql = false;
+    sslOptions->xmpp_server = false;
+    sslOptions->verbose = false;
+    sslOptions->cipher_details = true;
+    sslOptions->ipv4 = true;
+    sslOptions->ipv6 = true;
+    sslOptions->ocspStatus = false;
 
     // Default socket timeout 3s
-    sslOptions.timeout.tv_sec = 3;
-    sslOptions.timeout.tv_usec = 0;
+    sslOptions->timeout.tv_sec = 3;
+    sslOptions->timeout.tv_usec = 0;
     // Default connect timeout 75s
-    sslOptions.connect_timeout = 75;
-    sslOptions.sleep = 0;
+    sslOptions->connect_timeout = 75;
+    sslOptions->sleep = 0;
 
-    sslOptions.sslVersion = ssl_all;  
-    return &sslOptions;  
+    sslOptions->sslVersion = ssl_all;  
+    return sslOptions;  
 }
 
 // Adds Ciphers to the Cipher List structure
